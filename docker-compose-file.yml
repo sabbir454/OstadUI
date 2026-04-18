@@ -1,0 +1,59 @@
+version: "3.9"
+
+services:
+  ui1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ui1
+    ports:
+      - "8081:80"
+    networks:
+      - ui-network
+    volumes:
+      - ./dist:/usr/share/nginx/html   # dev mode: host changes reflect inside container
+
+  ui2:
+    image: my-ui:latest
+    container_name: ui2
+    ports:
+      - "8082:80"
+    networks:
+      - ui-network
+    volumes:
+      - ./dist:/usr/share/nginx/html
+
+  ui3:
+    image: my-ui:latest
+    container_name: ui3
+    ports:
+      - "8083:80"
+    networks:
+      - ui-network
+    volumes:
+      - ./dist:/usr/share/nginx/html
+
+  ui4:
+    image: my-ui:latest
+    container_name: ui4
+    ports:
+      - "8084:80"
+    networks:
+      - ui-network
+    volumes:
+      - ./dist:/usr/share/nginx/html
+
+  ui5:
+    image: my-ui:latest
+    container_name: ui5
+    ports:
+      - "8085:80"
+    networks:
+      - ui-network
+    volumes:
+      - ./dist:/usr/share/nginx/html
+
+# Custom network declaration
+networks:
+  ui-network:
+    driver: bridge
